@@ -17,11 +17,14 @@ package com.example.amphibians
 
 import android.view.View
 import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.amphibians.network.Amphibian
 import com.example.amphibians.ui.AmphibianApiStatus
 import com.example.amphibians.ui.AmphibianListAdapter
+import retrofit2.http.Url
 
 /**
  * Updates the data shown in the [RecyclerView]
@@ -30,6 +33,17 @@ import com.example.amphibians.ui.AmphibianListAdapter
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Amphibian>?) {
     val adapter = recyclerView.adapter as AmphibianListAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("imageUrl")
+fun binImage(imageView: ImageView, imageUrl: String?) {
+    imageUrl?.let {
+        val imgUri = imageUrl.toUri().buildUpon().scheme("https").build()
+        imageView.load(imgUri) {
+            placeholder(R.drawable.loading_img)
+            error(R.drawable.ic_baseline_broken_image_24)
+        }
+    }
 }
 
 /**

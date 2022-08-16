@@ -21,7 +21,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
@@ -73,6 +73,9 @@ dependencies {
 
     // SlidingPaneLayout
     implementation "androidx.slidingpanelayout:slidingpanelayout:1.2.0"
+
+    // Coil
+    implementation 'io.coil-kt:coil:2.1.0'
 
     testImplementation "junit:junit:4.+"
     androidTestImplementation "androidx.test.ext:junit:$junit_test"
